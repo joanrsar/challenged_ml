@@ -11,8 +11,9 @@ create table item(
 
 ALTER TABLE item ADD CONSTRAINT item_pk PRIMARY KEY ("item_id");
 
-select *  from ITEM;
 
+select *
+from item;
 
 create table item_children(
  id serial primary key not null,	
@@ -28,15 +29,44 @@ FOREIGN KEY (item_id)
 REFERENCES item(item_id) 
 
 select * from item_children;
+
+
 -----------------------------------------------TABLA LOG----------------------------------------------------------------
 create table LOG(
 id_log serial  primary key not null,
 codigo_respuesta integer not null,
 tiempo_ejecucion integer not null,
-consumio_api varchar(1) not null,
+consumio_api integer not null,
 tiempo_ejecucion_api integer,
 fecha timestamp default current_date
 )
 ;
 
 select * from log;
+
+select  TO_CHAR(fecha,'YYYY-MM-DD HH-MI') fecha,
+		avg(l.tiempo_ejecucion) promedio_respuesta,
+		count(1) total_peticiones,
+		avg(l.tiempo_ejecucion_api) promedio_respuesta_api,
+		sum(l.consumio_api) cantidad_apis
+from log L
+where l.fecha >= current_date -2 
+group by TO_CHAR(fecha,'YYYY-MM-DD HH-MI');
+
+select codigo_respuesta,
+	   count(1)
+from log l
+group by CODIGO_RESPUESTA;
+
+select  CODIGO_RESPUESTA,
+		COUNT(1) CONTADOR
+from log L
+where to_char(L.FECHA,'YYYY/MM/DD HH:MI') = '2020/08/08 10:33'
+group by CODIGO_RESPUESTA; 
+	   
+
+select  TO_CHAR(fecha,'YYYY-MM-DD HH-MI') fecha, 		avg(l.tiempo_ejecucion) promedio_respuesta, 		count(1) total_peticiones, 		avg(l.tiempo_ejecucion_api) promedio_respuesta_api, 		sum(l.consumio_api) cantidad_apis 
+from log l 
+where l.fecha >= current_date -2  group by TO_CHAR(fecha,'YYYY-MM-DD HH-MI') 
+
+select  CODIGO_RESPUESTA ,		COUNT(1) CONTADOR from log l where to_char(L.FECHA,'YYYY-MM-DD HH-MI') = '2020-08-08 10-56' group by CODIGO_RESPUESTA;

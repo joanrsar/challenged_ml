@@ -20,13 +20,14 @@ public class HealthDAOImpl implements IHealthDAO {
 
 	private Logger logger = LoggerFactory.getLogger(HealthDAOImpl.class);
 
-	private final static String SQL_CONSULTA = "select  TO_CHAR(fecha,'YYYY-MM-DD HH-MI') fecha, "
+	private final static String SQL_CONSULTA = "select  TO_CHAR(fecha,'YYYY-MM-DD HH24-MI') fecha, "
 			+ "		avg(l.tiempo_ejecucion) promedio_respuesta, " + "		count(1) total_peticiones, "
 			+ "		avg(l.tiempo_ejecucion_api) promedio_respuesta_api, " + "		sum(l.consumio_api) cantidad_apis "
-			+ " from log l where l.fecha >= current_date -2  group by TO_CHAR(fecha,'YYYY-MM-DD HH-MI') ";
+			+ " from log l where l.fecha >= current_date -2  group by TO_CHAR(fecha,'YYYY-MM-DD HH24-MI') "
+			+ "order by fecha";
 
 	private final static String SQL_DETALLE = "select  CODIGO_RESPUESTA, COUNT(1) CONTADOR from log l "
-			+ "where to_char(L.FECHA,'YYYY-MM-DD HH-MI') = ? group by CODIGO_RESPUESTA;  ";
+			+ "where to_char(L.FECHA,'YYYY-MM-DD HH24-MI') = ? group by CODIGO_RESPUESTA;  ";
 
 	@Override
 	public List<HealthResponse> consultarLog() throws DaoException, SQLException {
