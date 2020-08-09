@@ -19,7 +19,7 @@ api-health: Consulta los logs de las transacciones<br>
 
 # Solución Hibrida 
 
-Se contempla una segunda solución hibrida con una base de datos en AWS para este caso, el registro de logs no se hace a traves de Apache Kafka esta responsabilidad la asume el servicio de api-mercadolibre, esta version es la que se tiene por default si se quiere hacer uso de la versión numero 1 tiene que cambiarse el parametro
+Se contempla una segunda solución hibrida con una base de datos en AWS para este caso el registro de logs no se hace a traves de Apache Kafka esta responsabilidad la asume el servicio de api-mercadolibre, esta version es la que se tiene por default si se quiere hacer uso de la versión numero 1 tiene que cambiarse el parametro
 kafka a S en el application.properties
 
 Para esta se sacrifica un poco los tiempos de respuesta pero se mejora la disponibilidad al tener un servicio de alta disponibilidad en el cloud de AWS.
