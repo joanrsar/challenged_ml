@@ -13,6 +13,7 @@ public class PropertiesConfiguration {
 	private String childrenUrl;
 	private String kafkaHost;
 	private String topic;
+	private String kafka;
 	
 	
 	public String getItemUrl() {
@@ -39,6 +40,13 @@ public class PropertiesConfiguration {
 	public void setTopic(String topic) {
 		this.topic = topic;
 	}
+	public String getKafka() {
+		return kafka;
+	}
+	public void setKafka(String kafka) {
+		this.kafka = kafka;
+	}
+	
 	
 	
 	

@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 
 import co.com.mercadolibre.configuration.PropertiesConfiguration;
+import co.com.mercadolibre.model.Log;
 import co.com.mercadolibre.model.vo.LogVO;
+import co.com.mercadolibre.repository.ILogRepository;
 
 @Service
 public class LogService {
@@ -26,9 +28,39 @@ private static final Logger logger = LoggerFactory.getLogger(LogService.class);
 	@Autowired
 	private  PropertiesConfiguration myProps;
 	
+	private static final String KAFKA = "S";
+	
+	@Autowired
+	private ILogRepository repo;
+	
+	public  void logManager(int codigoRespuesta,long tiempoTotalEjecucion,
+			 boolean callApi, long tiempollamadaApi
+			 ) {
+		try {
+			String kafka = myProps.getKafka();
+			if(kafka.equalsIgnoreCase(KAFKA)) {
+				this.Kafka(codigoRespuesta, tiempoTotalEjecucion, callApi, tiempollamadaApi);
+			}else {
+				Log log = new Log();
+				log.setCodigoRespuesta(codigoRespuesta);
+				log.setTiempoEjecucion(tiempoTotalEjecucion);
+				int consumio = callApi ? 1 : 0;
+				log.setConsumioApi(consumio);
+				log.setTiempoEjecucionApi(tiempollamadaApi);
+				log.setFecha(new Date());
+				
+				repo.save(log);
+				
+			}
+			
+		}
+		catch(Exception e) {
+			
+		}
+	}
 	
 	@Async
-	public  void logManager(int codigoRespuesta,long tiempoTotalEjecucion,
+	public  void Kafka(int codigoRespuesta,long tiempoTotalEjecucion,
 							 boolean callApi, long tiempollamadaApi
 							 ) {
 		Properties props = new Properties();

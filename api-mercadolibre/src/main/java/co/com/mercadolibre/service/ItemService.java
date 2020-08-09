@@ -104,11 +104,6 @@ public class ItemService {
 						children.setStopTime(childrenVO.getStop_time());
 						childrenList.add(children);
 						
-						ItemChildren children2 = new ItemChildren();
-						children2.setItemId(item.getItemId());
-						children2.setItemChildrenId(item.getItemId());
-						children2.setStopTime(item.getStartTime());
-						childrenList.add(children2);
 						
 					}
 					itemResponse.setChildren(lista);

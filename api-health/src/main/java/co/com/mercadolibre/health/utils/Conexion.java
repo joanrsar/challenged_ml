@@ -9,7 +9,7 @@ public class Conexion {
 	/**
 	 * Estas variables deberian estar en variables de entorno
 	 */
-	private static final String POSTGRES="jdbc:postgresql://localhost:5432/postgres";
+	private static final String POSTGRES="jdbc:postgresql://postgres.c9vc2lcfn2qx.us-east-2.rds.amazonaws.com:5432/postgres";
 	private static final String USER="postgres";
 	private static final String PASS="postgres";
 	

@@ -1,0 +1,4 @@
+ mvn package
+ docker build -t "api-health-image" .
+ docker run --name api-health  -p 8081:8080 api-health-image:latest --link postgres-db:postgres --link docker_kafka_1:kafka -e URL_ITEM=https://api.mercadolibre.com/items/$ITEMID -e URL_CHILDREN=https://api.mercadolibre.com/items/$ITEMID/children -e URL_CHILDREN=https://api.mercadolibre.com/items/$ITEMID/children -e KAKFA_HOST=172.18.0.3:9092 -e TOPIC=log_topic -e URL_POSTGRES=jdbc:postgresql://172.17.0.2:5432/postgres  -e USER_POSTGRES=postgres -e PASS_POSTGRES=postgres
+ docker run --name api-health  -p 8081:8080 api-health-image:latest --link postgres-db:postgres --link docker_kafka_1:kafka 
