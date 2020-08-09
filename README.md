@@ -3,7 +3,7 @@
 
 # Consideraciones
 Se asume que el servicio no requiere ningun tipo de seguridad y será una api publica </br>
-Para el registro de logs se hace de forma asincronica a travez de un gestor de mensajes, para este ejercicio se utiliza apache kafka</br>
+Para el registro de logs se hace de forma asincronica a travez de un gestor de mensajes, para este ejercicio se utiliza apache kafka esta solución solo esta disponible la solución Onpremise</br>
 Se crean 3 apis para la resoluciòn de la solución, esto para separar notoriamente las responsabilidades del servicio</br>
 Para el api de consulta de Items el acceso a datos se hace a traves de JPA ya que es una forma sencilla si la aplicacion no requiere consultas complejas y hace uso de CRUDS sencillos y ejecutar el microservicio api-log-job
 
