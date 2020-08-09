@@ -8,6 +8,7 @@
 -Para el api de consulta de Items el acceso a datos se hace a traves de JPA ya que es una forma sencilla si la aplicacion no requiere consultas complejas y hace uso de CRUDS sencillos y ejecutar el microservicio api-log-job</br>
 -Para el api de registro de log y el servicio de Health se utiliza conexion a traves de JDBC debido a que este ultimo servicio debido al tipo de consulta realizada su rendimiento favorece mas cundo se utiliza sql nativo ya que se elimina una capa de interpretaciòn de HQL a SQL 
 -En la carpeta Scripts se encuentran los scripts de base de datos y la creaciòn de las imagenes de docker construidas para la solución onPremise
+-En ambientes productivos se podria escalar la funcionalidad para temas de rendimiento a traves de varias herramientas disponibles en el mercado como son funciones serverless, openshift con Kubernantes & Docker OpenStack
 
 La solución  contempla 3 servicios con las siguietes responsabilidades
 
