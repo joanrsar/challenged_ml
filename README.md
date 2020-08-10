@@ -1,4 +1,4 @@
-# challenged_ml
+# challenge_ml
 # Repositorio con las aplicaciones challenged mercado libre
 
 # Consideraciones
