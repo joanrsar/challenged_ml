@@ -28,6 +28,7 @@ ADD CONSTRAINT item_id_fk
 FOREIGN KEY (item_id) 
 REFERENCES item(item_id) 
 
+delete from item_children ;
 select * from item_children;
 
 
@@ -44,29 +45,12 @@ fecha timestamp default current_date
 
 select * from log;
 
-select  TO_CHAR(fecha,'YYYY-MM-DD HH-MI') fecha,
-		avg(l.tiempo_ejecucion) promedio_respuesta,
-		count(1) total_peticiones,
-		avg(l.tiempo_ejecucion_api) promedio_respuesta_api,
-		sum(l.consumio_api) cantidad_apis
-from log L
-where l.fecha >= current_date -2 
-group by TO_CHAR(fecha,'YYYY-MM-DD HH-MI');
 
-select codigo_respuesta,
-	   count(1)
-from log l
-group by CODIGO_RESPUESTA;
-
-select  CODIGO_RESPUESTA,
-		COUNT(1) CONTADOR
-from log L
-where to_char(L.FECHA,'YYYY/MM/DD HH:MI') = '2020/08/08 10:33'
-group by CODIGO_RESPUESTA; 
-	   
-
-select  TO_CHAR(fecha,'YYYY-MM-DD HH-MI') fecha, 		avg(l.tiempo_ejecucion) promedio_respuesta, 		count(1) total_peticiones, 		avg(l.tiempo_ejecucion_api) promedio_respuesta_api, 		sum(l.consumio_api) cantidad_apis 
+select  TO_CHAR(fecha,'YYYY-MM-DD HH24-MI') fecha, 		avg(l.tiempo_ejecucion) promedio_respuesta, 		count(1) total_peticiones, 		avg(l.tiempo_ejecucion_api) promedio_respuesta_api, 		sum(l.consumio_api) cantidad_apis 
 from log l 
-where l.fecha >= current_date -2  group by TO_CHAR(fecha,'YYYY-MM-DD HH-MI') 
+where l.fecha >= current_date -2   group by TO_CHAR(fecha,'YYYY-MM-DD HH24-MI')  order by fecha
 
-select  CODIGO_RESPUESTA ,		COUNT(1) CONTADOR from log l where to_char(L.FECHA,'YYYY-MM-DD HH-MI') = '2020-08-08 10-56' group by CODIGO_RESPUESTA;
+
+select  CODIGO_RESPUESTA ,		COUNT(1) CONTADOR 
+from log l where to_char(L.FECHA,'YYYY-MM-DD HH24-MI') = '2020-08-08 21-24' 
+group by CODIGO_RESPUESTA;
